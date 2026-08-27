@@ -1,0 +1,224 @@
+{
+  "schema": "stitch.plugin/v2",
+  "id": "stitch-totp",
+  "name": "Stitch TOTP",
+  "version": "0.1.0",
+  "service": "totp",
+  "kind": "service",
+  "engine": {
+    "min": "0.3.0",
+    "api": 2
+  },
+  "depends": [],
+  "entry": {
+    "module": "stitch_totp"
+  },
+  "capabilities": [],
+  "outputs": [],
+  "signature": "",
+  "contributions": {
+    "spi": [
+      "TotpProvider"
+    ],
+    "commands": [
+      {
+        "name": "list_keys",
+        "readonly": true
+      },
+      {
+        "name": "add_key",
+        "readonly": false
+      },
+      {
+        "name": "update_key",
+        "readonly": false
+      },
+      {
+        "name": "remove_key",
+        "readonly": false
+      },
+      {
+        "name": "link_key",
+        "readonly": false
+      },
+      {
+        "name": "claim_key",
+        "readonly": false
+      },
+      {
+        "name": "share_group",
+        "readonly": false
+      },
+      {
+        "name": "unshare_group",
+        "readonly": false
+      },
+      {
+        "name": "import_secrets",
+        "readonly": false
+      },
+      {
+        "name": "generate_secret",
+        "readonly": true
+      },
+      {
+        "name": "generate_code",
+        "readonly": true
+      },
+      {
+        "name": "verify_code",
+        "readonly": true
+      },
+      {
+        "name": "count_owned_keys",
+        "readonly": true
+      }
+    ],
+    "ui": {
+      "kind": "declarative",
+      "tabs": [
+        {
+          "id": "totp",
+          "label": "stitch-totp.tab",
+          "icon": "Shield",
+          "page": "main"
+        }
+      ],
+      "page": {
+        "title": "stitch-totp.title",
+        "nodes": [
+          {
+            "kind": "section",
+            "title": "stitch-totp.keys",
+            "nodes": [
+              {
+                "kind": "table",
+                "id": "totp-keys",
+                "columns": [
+                  {
+                    "key": "label",
+                    "label": "stitch-totp.label"
+                  },
+                  {
+                    "key": "issuer",
+                    "label": "stitch-totp.issuer"
+                  },
+                  {
+                    "key": "secret",
+                    "label": "stitch-totp.secret"
+                  },
+                  {
+                    "key": "enabled",
+                    "label": "stitch-totp.enabled"
+                  }
+                ],
+                "source": {
+                  "command": "list_keys"
+                },
+                "rowActions": [
+                  {
+                    "id": "remove-key-row",
+                    "label": "stitch-totp.removeRow",
+                    "command": "remove_key",
+                    "variant": "danger",
+                    "paramsFromRow": {
+                      "id": "id"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "nodes": [
+              {
+                "kind": "field",
+                "field": "text",
+                "id": "label-field",
+                "label": "stitch-totp.label",
+                "placeholder": "stitch-totp.labelPlaceholder"
+              },
+              {
+                "kind": "field",
+                "field": "text",
+                "id": "secret-field",
+                "label": "stitch-totp.secret",
+                "placeholder": "stitch-totp.secretPlaceholder"
+              },
+              {
+                "kind": "button",
+                "id": "add-key",
+                "label": "stitch-totp.add",
+                "command": "add_key",
+                "params": {
+                  "label": "",
+                  "secret": ""
+                },
+                "paramsFrom": {
+                  "label": "label-field",
+                  "secret": "secret-field"
+                },
+                "variant": "primary"
+              },
+              {
+                "kind": "button",
+                "id": "remove-key",
+                "label": "stitch-totp.remove",
+                "command": "remove_key",
+                "params": {
+                  "id": ""
+                },
+                "variant": "danger"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "i18n": {
+      "ru": {
+        "stitch-totp": {
+          "title": "2FA (TOTP)",
+          "tab": "2FA",
+          "add": "Добавить ключ",
+          "remove": "Удалить ключ",
+          "removeRow": "Удалить",
+          "empty": "Нет TOTP-ключей",
+          "keys": "TOTP-ключи",
+          "label": "Название",
+          "labelPlaceholder": "например, Kiro",
+          "issuer": "Сервис",
+          "secret": "Секрет",
+          "secretPlaceholder": "Base32-секрет, напр. JBSWY3DPEHPK3PXP",
+          "enabled": "Включён"
+        }
+      },
+      "en": {
+        "stitch-totp": {
+          "title": "2FA (TOTP)",
+          "tab": "2FA",
+          "add": "Add Key",
+          "remove": "Remove Key",
+          "removeRow": "Remove",
+          "empty": "No TOTP keys",
+          "keys": "TOTP keys",
+          "label": "Label",
+          "labelPlaceholder": "e.g. Kiro",
+          "issuer": "Issuer",
+          "secret": "Secret",
+          "secretPlaceholder": "Base32 secret, e.g. JBSWY3DPEHPK3PXP",
+          "enabled": "Enabled"
+        }
+      }
+    },
+    "storage": {
+      "sqlite": true,
+      "migrations": "raw_sql"
+    }
+  },
+  "generated_by": {
+    "tool": "stitch_plugin_tools",
+    "scaffold": 3
+  }
+}
