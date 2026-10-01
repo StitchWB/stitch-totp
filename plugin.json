@@ -220,5 +220,70 @@
   "generated_by": {
     "tool": "stitch_plugin_tools",
     "scaffold": 3
-  }
+  },
+  "description": {
+    "ru": "Хранит TOTP-ключи 2FA (Base32-секреты) с шифрованием Fernet и генерацией кодов по времени. Добавляет вкладку «2FA» с таблицей ключей и RPC-команды управления ключами и проверки кодов.",
+    "en": "Stores 2FA TOTP keys (Base32 secrets) with Fernet encryption and time-based code generation. Adds a 2FA tab with a key table and RPC commands for key management and code verification."
+  },
+  "author": "WhiteBite",
+  "category": "security",
+  "status": "beta",
+  "icon": "🔐",
+  "features": [
+    {
+      "title": {
+        "ru": "Хранилище TOTP-ключей с привязкой к пользователю и группами общего доступа",
+        "en": "TOTP key storage with per-user ownership and shared groups"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "Генерация секретов и кодов, проверка кодов (SHA1, 6 цифр, 30 сек)",
+        "en": "Secret and code generation and verification (SHA1, 6 digits, 30 s)"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "Шифрование секретов Fernet в собственной SQLite-базе плагина",
+        "en": "Fernet-encrypted secrets in the plugin's own SQLite database"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "Вкладка «2FA»: таблица ключей и формы добавления/удаления",
+        "en": "2FA tab: key table plus add/remove forms"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "Идемпотентный импорт ключей из ядра (import_secrets)",
+        "en": "Idempotent key import from core storage (import_secrets)"
+      },
+      "status": "stable"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-08-22",
+      "changes": [
+        {
+          "ru": "RPC-сервер плагина с командами управления TOTP-ключами",
+          "en": "Plugin RPC server with TOTP key management commands"
+        },
+        {
+          "ru": "Декларативная вкладка «2FA» с таблицей и формами",
+          "en": "Declarative 2FA tab with table and forms"
+        },
+        {
+          "ru": "Шифрование секретов, генерация и проверка кодов",
+          "en": "Secret encryption, code generation and verification"
+        }
+      ]
+    }
+  ]
 }
