@@ -2,7 +2,7 @@
   "schema": "stitch.plugin/v2",
   "id": "stitch-totp",
   "name": "Stitch TOTP",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "service": "totp",
   "kind": "service",
   "engine": {
@@ -252,6 +252,13 @@
     }
   ],
   "changelog": [
+    {
+      "version": "0.1.1",
+      "date": "2026-10-09",
+      "changes": [
+        "Dead remove button and plaintext secret column removed"
+      ]
+    },
     {
       "version": "0.1.0",
       "date": "2026-08-22",
