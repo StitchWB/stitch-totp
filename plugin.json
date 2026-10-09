@@ -104,10 +104,6 @@
                     "label": "stitch-totp.issuer"
                   },
                   {
-                    "key": "secret",
-                    "label": "stitch-totp.secret"
-                  },
-                  {
                     "key": "enabled",
                     "label": "stitch-totp.enabled"
                   }
@@ -115,6 +111,7 @@
                 "source": {
                   "command": "list_keys"
                 },
+                "empty": "stitch-totp.empty",
                 "rowActions": [
                   {
                     "id": "remove-key-row",
@@ -160,16 +157,6 @@
                   "secret": "secret-field"
                 },
                 "variant": "primary"
-              },
-              {
-                "kind": "button",
-                "id": "remove-key",
-                "label": "stitch-totp.remove",
-                "command": "remove_key",
-                "params": {
-                  "id": ""
-                },
-                "variant": "danger"
               }
             ]
           }
@@ -182,7 +169,6 @@
           "title": "2FA (TOTP)",
           "tab": "2FA",
           "add": "Добавить ключ",
-          "remove": "Удалить ключ",
           "removeRow": "Удалить",
           "empty": "Нет TOTP-ключей",
           "keys": "TOTP-ключи",
@@ -199,7 +185,6 @@
           "title": "2FA (TOTP)",
           "tab": "2FA",
           "add": "Add Key",
-          "remove": "Remove Key",
           "removeRow": "Remove",
           "empty": "No TOTP keys",
           "keys": "TOTP keys",
